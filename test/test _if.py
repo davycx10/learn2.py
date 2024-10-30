@@ -1,8 +1,6 @@
 from lear2 import *
 
-if request == just_prize:
-        print(f"c'est gagné le juste prix était {just_prize}")
-        
-else:
-    request != just_prize
-    print("c'est plus") or print("c'est moins")
+while request != just_prize :
+    count_try -= 1
+    print(f"choisir un nombre entre 1 et 10000, {request}")
+    request = int(input("entrer un prix: "))
