@@ -2,7 +2,7 @@ from random import *
 
 just_prize = randint(0, 1000)
 request = 0
-count_try = 2
+count_try = 5
 
 while request != just_prize :
     count_try -= 1
