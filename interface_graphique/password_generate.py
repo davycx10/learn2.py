@@ -1,5 +1,18 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import string
+from random import *
+
+
+def generate_password():
+    password_min = 6
+    password_max = 12
+    all_chars = string.ascii_letters + string.punctuation + string.digits
+    
+    password = "".join(choice(all_chars) for x in range(randint(password_min, password_max)))
+    password_entry.delete(0, END)
+    password_entry.insert(0, password)
+        
 
 #créer une fenetre
 window = Tk()
@@ -35,7 +48,7 @@ password_entry = Entry(right_frame, text="mot de passe", font=("Helvetica", 20),
 password_entry.pack()
 
 #créer un bouton
-generate_password_button = Button(right_frame, text="générer", font=("Helvetica", 20), bg="#10b9da", fg="white")
+generate_password_button = Button(right_frame, text="générer", font=("Helvetica", 20), bg="#10b9da", fg="white", command=generate_password)
 generate_password_button.pack(fill=X)
 
 #on place la sous boite à droite de la frame principal
@@ -45,8 +58,19 @@ right_frame.grid(row=0, column=1, sticky=W)
 #afficher la frame
 frame.pack(expand=YES)
 
+#création d'une barre de menu
+menu_barre = Menu(window)
+
+#créer un premier menu
+file_menu = Menu(menu_barre, tearoff=0)
+file_menu.add_command(label="nouveau", command=generate_password)
+file_menu.add_command(label="Quit", command=window.quit)
+menu_barre.add_cascade(label="fichier", menu=file_menu)
+
+#configurer notre fenetre pour ajouter cette menu bar
+window.config(menu=menu_barre)
+
 
 
 #afficher la fenetre
-window.mainloop()
-
+window.mainloop() 
